@@ -1,0 +1,578 @@
+/* --- 1. CONFIGURAZIONE GENERALE E VARIABILI --- */
+:root {
+    --bg-color: #FAF9F6;
+    --text-color: #222222;
+    --accent-color: #2E8B57;
+    --border-color: #DDDDDD;
+    --card-bg: #FFFFFF;
+    
+    --content-width: 1100px;
+    --header-height-home: 60vh; 
+    --header-height-page: 30vh;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: 'Roboto', sans-serif;
+    line-height: 1.6;
+}
+
+body > main {
+    max-width: var(--content-width);
+    margin: -50px auto 0;
+    padding: 0 20px 60px;
+    position: relative;
+    z-index: 10;
+}
+
+body.internal-page > main {
+    margin: -60px auto 0;
+}
+
+a {
+    color: var(--accent-color); /* Applica il verde a tutti i link */
+    text-decoration: none;      /* Toglie la sottolineatura di default */
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    /* Quando passi sopra col mouse, diventa un po' più scuro per effetto */
+    color: #1a5235; 
+}
+
+hr { border: 0; border-top: 1px solid var(--border-color); margin: 30px 0; }
+
+/* --- 2. HEADER E LOGO (Stile Bottone) --- */
+/* --- HEADER GENERALE --- */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 5%;
+    position: relative;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.7);
+
+    /* --- NUOVA LINEA ANTRACITE --- */
+    /* 5px di spessore, linea solida, colore Antracite (#2B2B2B) */
+    border-bottom: 5px solid #2B2B2B; 
+    
+    /* Questo assicura che il bordo sia incluso nell'altezza totale */
+    box-sizing: border-box; 
+}
+
+/* Stile del Logo (Scatola statica, non cliccabile) */
+header .logo {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    
+    /* Manteniamo lo stile "box" estetico */
+    padding: 10px 20px;
+    border: 2px solid rgba(255, 255, 255, 0.6);
+    background-color: rgba(0, 0, 0, 0.4); 
+    backdrop-filter: blur(4px);
+    border-radius: 8px;
+    
+    /* Rimuoviamo cursori e transizioni da link */
+    cursor: default; 
+}
+
+/* Immagine Logo */
+header .logo img {
+    height: 100px;
+    width: auto;
+    object-fit: contain;
+}
+
+/* Testo "PORTFOLIO/CV" */
+header .logo span {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 1.2rem;
+    color: #FFFFFF;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+/* --- 3. NAVIGAZIONE --- */
+nav ul { 
+    list-style: none; 
+    display: flex; 
+    gap: 15px; 
+}
+
+/* Stile Base dei Bottoni */
+nav a {
+    text-decoration: none;
+    color: #FFFFFF;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 1rem;
+    padding: 12px 25px;
+    
+    /* Sfondo semitrasparente scuro */
+    border: 2px solid rgba(255, 255, 255, 0.6);
+    background-color: rgba(0, 0, 0, 0.4); 
+    backdrop-filter: blur(4px);
+    
+    /* Angoli arrotondati (uguali al logo) */
+    border-radius: 8px; 
+    
+    transition: all 0.3s ease;
+}
+
+/* 1. HOVER (Quando passi col mouse): Diventa BIANCO */
+nav a:hover {
+    background-color: #FFFFFF;
+    color: #000000; /* Testo nero */
+    border-color: #FFFFFF;
+    transform: translateY(-2px); /* Piccolo saltello in alto */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    text-shadow: none;
+}
+
+/* 2. ACTIVE (La pagina in cui sei): Diventa SCURO con bordo VERDE */
+nav a.active {
+    background-color: #023020; /* Sfondo Nero pieno */
+    color: #FFFFFF;            /* Testo Bianco */
+    
+    /* Usa la variabile verde definita in alto */
+    border-color: var(--accent-color); 
+    
+    /* Ombra interna per effetto "premuto" */
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.8); 
+    
+    /* Impedisce di cliccarlo di nuovo */
+    pointer-events: none; 
+    text-shadow: none;
+}
+
+/* --- 4. CLASSI HEADER SPECIFICHE --- */
+header.home-header {
+    height: var(--header-height-home);
+    background-image: url('header.jpg');
+    background-size: cover;
+    background-position: center;
+    align-items: flex-start;
+    padding-top: 40px;
+}
+
+header.page-header {
+    height: var(--header-height-page);
+    background-image: url('headerporsche.jpg');
+    background-size: cover;
+    background-position: center;
+    background-position-y: 50%;
+    align-items: flex-start;
+    padding-top: 40px;
+}
+
+/* --- 5. STYLE CARD E CONTENUTI --- */
+.content-card, .profile-card {
+    background-color: var(--card-bg);
+    padding: 50px;
+    border-radius: 8px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+    margin-bottom: 30px;
+}
+
+.profile-card {
+    display: flex;
+    gap: 40px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.profile-pic {
+    width: 230px;
+    height: 230px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 4px solid #fff;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+/* --- AGGIORNAMENTO CARD PROFILO --- */
+
+.profile-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centra il testo verticalmente rispetto alla foto */
+    min-width: 300px; /* Evita che si schiacci troppo su schermi piccoli */
+}
+
+/* 1. IL NOME (Titolo H2) - Molto più grande e deciso */
+.profile-content h2 {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 2.8rem; /* Aumentato molto (prima era default o piccolo) */
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: #000000;
+    line-height: 1.1;
+    letter-spacing: -1px; /* Rende il titolo più compatto e moderno */
+}
+
+/* 2. IL PARAGRAFO "LEAD" (Il primo paragrafo) */
+/* Usiamo :first-of-type per selezionare automaticamente il primo <p> */
+.profile-content p:first-of-type {
+    font-size: 1.3rem; /* Testo più grande del normale */
+    font-weight: 400;
+    color: #222;       /* Nero quasi pieno */
+    line-height: 1.5;
+    margin-bottom: 25px;
+    border-left: 4px solid var(--accent-color); /* Linea verde elegante a sinistra */
+    padding-left: 20px; /* Spazio per la linea verde */
+}
+
+/* 3. GLI ALTRI PARAGRAFI (Hobby, note, ecc.) */
+.profile-content p {
+    font-size: 1.1rem; /* Leggermente più grande dello standard */
+    color: #555;       /* Grigio scuro per togliere peso visivo */
+    margin-bottom: 15px;
+    line-height: 1.7;  /* Ottima leggibilità */
+    max-width: 650px;  /* Evita che le righe diventino lunghissime, migliorando la lettura */
+}
+
+/* Il Link finale "View full CV" */
+.profile-content a {
+    display: inline-block;
+    margin-top: 10px;
+    font-size: 1.1rem;
+    letter-spacing: 0.5px;
+}
+
+.university-logos {
+    display: flex;
+    gap: 30px;
+    align-items: center;
+    margin-top: 20px;
+}
+.uni-logo { height: 60px; width: auto; opacity: 0.9; }
+
+/* --- STILE TIMELINE PER IL CV (Versione Font Maggiorato) --- */
+
+.cv-timeline {
+    border-left: 1px solid #BBBBBB; 
+    padding-left: 35px; /* Un po' più di spazio laterale */
+    margin-left: 10px;
+    position: relative;
+}
+
+/* Coda tratteggiata */
+.cv-timeline::after {
+    content: '';
+    position: absolute;
+    bottom: -30px;
+    left: -1px;
+    width: 1px;
+    height: 30px;
+    border-left: 1px dashed #BBBBBB; 
+}
+
+/* Spaziatura tra le esperienze aumentata */
+.cv-timeline article {
+    position: relative;
+    margin-bottom: 50px; /* Più aria tra un lavoro e l'altro */
+}
+
+.cv-timeline article:last-child {
+    margin-bottom: 0;
+}
+
+/* Il Pallino (Ricalibrato per il font più grande) */
+.cv-timeline article::before {
+    content: '';
+    position: absolute;
+    left: -35px; /* Adattato al nuovo padding */
+    margin-left: -0.5px;
+    transform: translateX(-50%);
+    
+    /* Abbassato leggermente perché il font del titolo è più grande */
+    top: 10px;    
+    
+    width: 11px;  /* Leggermente più grande per bilanciare il testo */
+    height: 11px;
+    
+    border-radius: 50%; 
+    background-color: var(--card-bg); 
+    border: 2px solid var(--accent-color);
+    z-index: 2;
+}
+
+/* Date - Più grandi */
+.cv-timeline article em {
+    display: inline-block;
+    color: var(--accent-color);
+    font-family: 'Roboto Mono', monospace;
+    font-size: 1rem; /* Aumentato da 0.85rem */
+    font-weight: bold;
+    margin-bottom: 8px;
+    letter-spacing: -0.5px;
+}
+
+/* Titoli Ruoli - Molto più grandi */
+.cv-timeline h3 {
+    margin: 0 0 10px 0; /* Aggiunto margine sotto */
+    font-size: 1.5rem; /* Aumentato da 1.1rem (Bello evidente) */
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+/* Descrizione / Nome Azienda - Più grandi e ariosi */
+.cv-timeline p {
+    margin-bottom: 8px;
+    font-size: 1.15rem; /* Aumentato da 1rem */
+    color: #444;        /* Grigio leggermente più scuro per leggibilità */
+    line-height: 1.8;   /* Interlinea aumentata per riempire verticalmente */
+}
+
+/* Se usi liste puntate dentro la timeline (es. mansioni) */
+.cv-timeline ul {
+    margin-top: 10px;
+    padding-left: 20px;
+}
+
+.cv-timeline li {
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+    line-height: 1.6;
+}
+
+
+/* --- STILE SEZIONE SKILLS (CV) --- */
+
+.skills-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Due colonne uguali */
+    gap: 50px; /* Spazio tra le colonne */
+}
+
+/* Su cellulare le colonne vanno una sotto l'altra */
+@media (max-width: 768px) {
+    .skills-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+}
+
+.skill-list {
+    list-style: none; /* Toglie i pallini standard brutti */
+    padding: 0;
+}
+
+.skill-list li {
+    margin-bottom: 10px;
+    padding-left: 20px;
+    position: relative;
+}
+
+/* Aggiungiamo il pallino verde personalizzato */
+.skill-list li::before {
+    content: '•';
+    color: var(--accent-color); /* Il tuo verde */
+    font-weight: bold;
+    font-size: 1.2rem;
+    position: absolute;
+    left: 0;
+    top: -2px;
+}
+
+
+
+
+
+
+
+/* --- STILE BLOG (Griglia e Card) --- */
+
+/* Contenitore a Griglia: dispone le card automaticamente */
+.blog-grid {
+    display: grid;
+    /* Questa riga magica crea colonne automatiche larghe almeno 300px */
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); 
+    gap: 30px; /* Spazio tra le card */
+    margin-top: 20px;
+}
+
+/* La singola Card del Post */
+.blog-card {
+    background-color: var(--card-bg);
+    border-radius: 8px;
+    padding: 30px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05); /* Ombra leggera */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column; /* Per allineare il bottone in fondo */
+    height: 100%; /* Rende tutte le card alte uguali */
+    border: 1px solid transparent;
+}
+
+/* Effetto Hover: la card si alza leggermente */
+.blog-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+    border-color: var(--accent-color); /* Bordo verde al passaggio */
+}
+
+/* Data del post */
+.blog-date {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.85rem;
+    color: var(--accent-color);
+    font-weight: bold;
+    margin-bottom: 10px;
+    display: block;
+}
+
+/* Titolo del post nella card */
+.blog-card h3 {
+    font-size: 1.4rem;
+    margin-bottom: 15px;
+    line-height: 1.3;
+}
+
+.blog-card h3 a {
+    text-decoration: none;
+    color: var(--text-color);
+    transition: color 0.3s;
+}
+
+.blog-card:hover h3 a {
+    color: var(--accent-color);
+}
+
+/* Riassunto del testo */
+.blog-card p {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 25px;
+    flex-grow: 1; /* Spinge il bottone verso il basso */
+}
+
+/* Bottone "Read Post" */
+.read-more-btn {
+    display: inline-block;
+    text-decoration: none;
+    color: var(--accent-color);
+    font-weight: bold;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.9rem;
+    border: 2px solid var(--accent-color);
+    padding: 10px 20px;
+    border-radius: 4px;
+    text-align: center;
+    transition: all 0.3s ease;
+    width: fit-content; /* Il bottone è largo quanto il testo */
+}
+
+.read-more-btn:hover {
+    background-color: var(--accent-color);
+    color: #FFFFFF;
+}
+
+/* --- STILE HEADER DEL SINGOLO POST --- */
+
+/* 1. Resettiamo l'header (toglie le impostazioni della barra di navigazione) */
+header.post-header {
+    background: none;      /* Toglie immagini di sfondo */
+    height: auto;          /* Altezza automatica in base al testo */
+    display: block;        /* Toglie il flex che disallineava le cose */
+    padding: 0 0 20px 0;   /* Toglie padding laterali, lascia spazio sotto */
+    margin-bottom: 40px;
+    border-bottom: 1px solid #eeeeee; /* Una linea grigia sottile elegante */
+    text-shadow: none;     /* IMPORTANTE: Toglie l'ombreggiatura nera */
+}
+
+/* 2. Stile della data/sottotitolo (Verde, piccolo, trasparente) */
+.post-meta {
+    color: var(--accent-color);
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.85rem;       /* Più piccolo */
+    text-transform: uppercase;
+    font-weight: bold;
+    opacity: 0.6;             /* Rendiamolo leggermente trasparente */
+    margin-bottom: 10px;      /* Spazio tra data e titolo */
+    letter-spacing: 1px;      /* Spaziatura lettere per eleganza */
+}
+
+/* 3. Stile del Titolo (Nero pulito) */
+.post-header h1 {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 2.2rem;
+    line-height: 1.2;
+    color: #222222;           /* Nero scuro (senza ombra) */
+    text-shadow: none;        /* Sicurezza extra */
+    margin: 0;
+}
+
+
+/* --- FOOTER --- */
+footer {
+    background-color: #1a1a1a; /* Quasi nero, molto elegante */
+    color: #aaaaaa;            /* Testo grigio chiaro (non bianco puro, per eleganza) */
+    padding: 60px 20px 20px;   /* Spazio abbondante sopra e sotto */
+    margin-top: 80px;          /* Stacca il footer dal contenuto principale */
+    border-top: 4px solid var(--accent-color); /* La linea verde che chiude */
+    font-size: 0.9rem;
+}
+
+.footer-content {
+    max-width: var(--content-width);
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between; /* Spinge i contenuti ai lati opposti */
+    align-items: flex-start;
+    flex-wrap: wrap; /* Su mobile va a capo */
+    gap: 40px;
+}
+
+/* Colonna di sinistra (Nome e frase) */
+.footer-info h4 {
+    font-family: 'Roboto Mono', monospace;
+    color: #FFFFFF;
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.footer-info p {
+    max-width: 400px;
+    line-height: 1.6;
+}
+
+/* Colonna di destra (Link social) */
+.footer-links ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+.footer-links a {
+    color: #FFFFFF;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1rem;
+    transition: color 0.3s;
+}
+
+.footer-links a:hover {
+    color: var(--accent-color); /* Diventa verde al passaggio */
+    text-decoration: none;
+}
+
+/* Copyright in basso */
+.footer-bottom {
+    text-align: center;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #333; /* Linea sottile separatrice */
+    font-size: 0.8rem;
+    font-family: 'Roboto Mono', monospace;
+}
+
+
