@@ -1,6 +1,6 @@
 /* --- 1. CONFIGURAZIONE GENERALE E VARIABILI --- */
 :root {
-    --bg-color: #FAF9F6;
+    --bg-color: #F4F7F6;
     --text-color: #222222;
     --accent-color: #2E8B57;
     --border-color: #DDDDDD;
@@ -104,6 +104,62 @@ nav ul {
     gap: 15px; 
 }
 
+/* Hamburger button (hidden on desktop) */
+.nav-toggle {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 10px 16px;
+    border: 2px solid rgba(255, 255, 255, 0.6);
+    background-color: rgba(0, 0, 0, 0.4);
+    color: #FFFFFF;
+    border-radius: 8px;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    backdrop-filter: blur(4px);
+}
+
+.nav-toggle .bars {
+    display: inline-block;
+    width: 20px;
+    height: 2px;
+    background-color: #FFFFFF;
+    position: relative;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.nav-toggle .bars::before,
+.nav-toggle .bars::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    width: 20px;
+    height: 2px;
+    background-color: #FFFFFF;
+    transition: transform 0.3s ease, top 0.3s ease, opacity 0.2s ease;
+}
+
+.nav-toggle .bars::before { top: -6px; }
+.nav-toggle .bars::after { top: 6px; }
+
+.nav-toggle.is-active .bars {
+    background-color: transparent;
+}
+
+.nav-toggle.is-active .bars::before {
+    top: 0;
+    transform: rotate(45deg);
+}
+
+.nav-toggle.is-active .bars::after {
+    top: 0;
+    transform: rotate(-45deg);
+}
+
 /* Stile Base dei Bottoni */
 nav a {
     text-decoration: none;
@@ -153,7 +209,7 @@ nav a.active {
 /* --- 4. CLASSI HEADER SPECIFICHE --- */
 header.home-header {
     height: var(--header-height-home);
-    background-image: url('header.jpg');
+    background-image: url('images/header.jpg');
     background-size: cover;
     background-position: center;
     align-items: flex-start;
@@ -162,7 +218,7 @@ header.home-header {
 
 header.page-header {
     height: var(--header-height-page);
-    background-image: url('headerporsche.jpg');
+    background-image: url('images/headerporsche.jpg');
     background-size: cover;
     background-position: center;
     background-position-y: 50%;
@@ -175,7 +231,7 @@ header.page-header {
     background-color: var(--card-bg);
     padding: 50px;
     border-radius: 8px;
-    box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.05);
     margin-bottom: 30px;
 }
 
@@ -573,6 +629,281 @@ footer {
     border-top: 1px solid #333; /* Linea sottile separatrice */
     font-size: 0.8rem;
     font-family: 'Roboto Mono', monospace;
+}
+
+/* --- RESPONSIVE (Mobile & Tablet) --- */
+@media (min-width: 1440px) {
+    :root {
+        --content-width: 1280px;
+        --header-height-home: 65vh;
+        --header-height-page: 35vh;
+    }
+
+    body > main {
+        padding: 0 40px 80px;
+    }
+
+    .content-card, .profile-card {
+        padding: 60px 70px;
+    }
+
+    .profile-content h2 {
+        font-size: 3.2rem;
+    }
+
+    .profile-content p:first-of-type {
+        font-size: 1.4rem;
+    }
+
+    .profile-content p {
+        font-size: 1.2rem;
+    }
+
+    .blog-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 35px;
+    }
+
+    header .logo img {
+        height: 110px;
+    }
+
+    header .logo span {
+        font-size: 1.3rem;
+    }
+
+    nav a {
+        font-size: 1.05rem;
+        padding: 13px 28px;
+    }
+}
+
+@media (max-width: 1024px) {
+    :root {
+        --content-width: 92vw;
+        --header-height-home: 50vh;
+        --header-height-page: 28vh;
+    }
+
+    body > main {
+        margin: -40px auto 0;
+        padding: 0 16px 50px;
+    }
+}
+
+@media (max-width: 768px) {
+    body {
+        font-size: 15px;
+        line-height: 1.6;
+    }
+
+    header {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        gap: 12px;
+        padding: 16px 6% 18px;
+        text-align: left;
+        position: relative;
+    }
+
+    header .logo {
+        padding: 6px 10px;
+        gap: 8px;
+    }
+
+    header .logo img {
+        height: 52px;
+    }
+
+    header .logo span {
+        font-size: 0.9rem;
+    }
+
+    nav ul {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        width: min(260px, 78vw);
+        gap: 18px;
+        position: absolute;
+        top: calc(100% + 4px);
+        right: 4%;
+        background-color: rgba(0, 0, 0, 0.75);
+        padding: 12px 6px 12px 12px;
+        border-radius: 10px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        transform: translateX(120%) scale(0.98);
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transition: transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.35s ease, visibility 0s linear 0.35s;
+        z-index: 20;
+    }
+
+    nav.is-open ul {
+        transform: translateX(0) scale(1);
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+        transition: transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.35s ease;
+    }
+
+    nav {
+        width: auto;
+    }
+
+    .nav-toggle {
+        display: inline-flex;
+        margin-left: auto;
+    }
+
+    nav a {
+        padding: 8px 10px 8px 12px;
+        font-size: 0.85rem;
+        width: 100%;
+        text-align: right;
+    }
+
+    header.home-header {
+        height: auto;
+        padding-bottom: 30px;
+    }
+
+    header.page-header {
+        height: auto;
+        padding-bottom: 25px;
+    }
+
+    .content-card, .profile-card {
+        padding: 28px;
+    }
+
+    .profile-card {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .profile-content {
+        min-width: auto;
+        align-items: center;
+    }
+
+    .profile-content p {
+        max-width: 100%;
+    }
+
+    .profile-content p:first-of-type {
+        font-size: 1.1rem;
+    }
+
+    .profile-content p {
+        font-size: 1rem;
+    }
+
+    .profile-content h2 {
+        font-size: 2rem;
+    }
+
+    .profile-content p:first-of-type {
+        border-left: none;
+        padding-left: 0;
+    }
+
+    .profile-pic {
+        width: 180px;
+        height: 180px;
+    }
+
+    .cv-timeline {
+        padding-left: 25px;
+    }
+
+    .cv-timeline article::before {
+        left: -25px;
+    }
+
+    .cv-timeline h3 {
+        font-size: 1.25rem;
+    }
+
+    .cv-timeline p,
+    .cv-timeline li {
+        font-size: 1rem;
+    }
+
+    .blog-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .blog-card h3 {
+        font-size: 1.2rem;
+    }
+
+    .blog-card p {
+        font-size: 0.95rem;
+    }
+
+    .footer-content {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .footer-links ul {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        font-size: 14px;
+    }
+
+    body > main {
+        margin: -30px auto 0;
+        padding: 0 14px 40px;
+    }
+
+    header .logo img {
+        height: 60px;
+    }
+
+    nav a {
+        width: 100%;
+        text-align: center;
+    }
+
+    .profile-content h2 {
+        font-size: 1.8rem;
+    }
+
+    .profile-content p:first-of-type {
+        font-size: 1.05rem;
+    }
+
+    .profile-content p {
+        font-size: 0.95rem;
+    }
+
+    .blog-card {
+        padding: 22px;
+    }
+
+    .blog-card h3 {
+        font-size: 1.1rem;
+    }
+
+    .blog-card p {
+        font-size: 0.92rem;
+    }
+
+    .uni-logo {
+        height: 48px;
+    }
 }
 
 
