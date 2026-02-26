@@ -18,6 +18,11 @@ body {
     color: var(--text-color);
     font-family: 'Roboto', sans-serif;
     line-height: 1.6;
+    overflow-x: hidden;
+}
+
+html {
+    overflow-x: hidden;
 }
 
 body > main {
