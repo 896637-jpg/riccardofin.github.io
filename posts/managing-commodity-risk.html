@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Managing commodity risk in carbon emissions markets</title>
+    <link rel="icon" type="image/jpeg" href="../images/Icon.jpeg">
+    
+    <link rel="stylesheet" href="../style.css"> 
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        .post-content h2 {
+            font-family: 'Roboto Mono', monospace;
+            font-size: 1.3rem;
+            color: #222;
+            margin: 40px 0 12px;
+            padding-bottom: 6px;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        .post-content h3 {
+            font-family: 'Roboto Mono', monospace;
+            font-size: 1rem;
+            color: var(--accent-color);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin: 28px 0 8px;
+        }
+
+        .post-content p {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            color: #333;
+            margin-bottom: 16px;
+        }
+
+        .intro-box {
+            border-left: 4px solid var(--accent-color);
+            padding: 4px 0 4px 20px;
+            margin-bottom: 30px;
+        }
+
+        .intro-box p {
+            font-size: 1.15rem !important;
+            color: #222 !important;
+        }
+
+      .stats-table {
+            width: 100%;
+            max-width: 320px;
+            border-collapse: collapse;
+            margin: 20px auto 28px; /* Changed '0' to 'auto' to center it */
+            font-size: 0.95rem;
+        }
+
+        .stats-table th {
+            background-color: #023020;
+            color: #fff;
+            padding: 10px 16px;
+            text-align: left;
+            font-family: 'Roboto Mono', monospace;
+            font-size: 0.8rem;
+            letter-spacing: 0.5px;
+        }
+
+        .stats-table td {
+            padding: 8px 16px;
+            border-bottom: 1px solid var(--border-color);
+            color: #333;
+        }
+
+        .stats-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .stats-table tr:nth-child(even) td {
+            background-color: #f9fafb;
+        }
+
+        .strategy-block {
+            border-left: 3px solid var(--border-color);
+            padding: 2px 0 2px 20px;
+            margin: 20px 0 28px;
+        }
+
+        .post-tag {
+            display: inline-block;
+            background-color: #e8f5ee;
+            color: var(--accent-color);
+            font-family: 'Roboto Mono', monospace;
+            font-size: 0.75rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 3px 9px;
+            border-radius: 4px;
+            margin-right: 6px;
+            margin-bottom: 16px;
+        }
+
+        .figure-note {
+            text-align: center;
+            font-size: 0.85rem;
+            color: #999;
+            font-style: italic;
+            margin: 6px 0 24px;
+        }
+
+       /* Modified to make images half as big and centered */
+       .post-content img {
+    display: block !important;
+    width: 50% !important;
+    height: auto;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    margin-top: 16px;
+    margin-bottom: 6px;
+    border-radius: 6px;
+}
+
+        /* Modified to remove the solid green background */
+        .conclusion-box {
+            border-top: 2px solid var(--border-color);
+            border-bottom: 2px solid var(--border-color);
+            padding: 20px 0;
+            margin: 40px 0 24px;
+        }
+
+        .conclusion-box h2 {
+            font-family: 'Roboto Mono', monospace;
+            font-size: 1.1rem;
+            color: #222 !important;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .conclusion-box p {
+            color: #333 !important;
+            font-size: 1.05rem !important;
+            line-height: 1.8;
+        }
+
+        .academic-note {
+            font-size: 0.85rem;
+            color: #999;
+            font-style: italic;
+            margin-top: 8px;
+        }
+    </style>
+</head>
+
+<body class="internal-page">
+
+    <header class="page-header">
+        <div class="logo">
+            <img src="../images/Logo.png" alt="Riccardo Fin Logo">
+            <span>Blog posts</span>
+        </div>
+        
+        <button class="nav-toggle" aria-expanded="false" aria-controls="site-nav">
+            <span class="bars" aria-hidden="true"></span>
+            Menu
+        </button>
+        <nav id="site-nav">
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../cv.html">CV</a></li>
+                <li><a href="../blog.html" class="active">Blog posts</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="content-card">
+            
+            <article>
+                <header class="post-header">
+                    <p class="post-meta">-April 2026 • Accademic work</p>
+                    <h1>Managing Commodity Risk in Carbon Markets</h1>
+                </header>
+                
+                <div class="post-content">
+
+                    <!-- INTRODUCTION -->
+                    <div class="intro-box">
+                        <p>
+                            Carbon credits are unlike other major commodities, their price responds to politics over anything else. When the EU adjusts its climate mandates, the market moves. This makes the European carbon market a fascinating and challenging arena for both hedgers and speculators.
+                        </p>
+                    </div>
+
+                    <p>
+                        This post is based on a paper I wrote as an assignment for my "Advanced instruments for sustainable investing" course at Ca' Foscari. Using daily closing prices from Bloomberg covering 2024 to early 2026, I analyzed how four classic derivative strategies (bull spread, covered call, protective put, and futures hedging) could have been deployed at different points in the carbon credit price cycle. My goal was to show that choosing the right strategies can be of vital importance to manage risk in a highly volatile and policy driven market.
+                    </p>
+
+                    <hr>
+
+                    <!-- CASE STUDY -->
+                    <h2>Case Study: Carbon Credits (HO1), 2024–2026</h2>
+
+                    <p>
+                        The analysis aims to evaluate 4 main derivative hedging and speculative strategies within the Carbon Emissions market (HO1). The dataset consists of daily closing prices for European Carbon Credits, sourced from Bloomberg, covering a period from early 2024 to early 2026. The data was analyzed through the program R to generate tables and plots. This commodity was selected due to its unique "policy-driven" volatility and its increasing relevance in the transition toward Sustainable Finance. This commodity is in fact distinguished by high volatility periods highly correlated to changes in European environmental policies. Actors involved in this sector therefore need to engage in hedging strategies, and speculators may find valuable opportunities to exploit.
+                    </p>
+
+                    <h2>Descriptive Statistics</h2>
+
+                    <p>
+                        Computing the descriptive statistics of this commodity is useful to understand its fundamental characteristics and general "behavior". A critical observation is the imbalance between a very low annualized return rate of 3.77% in spite of an annualized volatility of 32.26%. This high level of risk relative to a low return demonstrates that a passive strategy wouldn't be profitable. This imbalance is in part explained by the high kurtosis level of 3.88, which is a sign of "fat tails" in the distribution, meaning the commodity is capable of meaningfully high price swings. This data suggests that option hedging strategies would be very beneficial, but they would also be costly as high volatility drives up an option's price.
+                    </p>
+
+                    <table class="stats-table">
+                        <thead>
+                            <tr>
+                                <th>Metric</th>
+                                <th>Value</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Mean (Daily)</td><td>0.00014948</td></tr>
+                            <tr><td>Annualized Return</td><td>0.03766872</td></tr>
+                            <tr><td>Volatility (Daily SD)</td><td>0.02031985</td></tr>
+                            <tr><td>Annualized Volatility</td><td>0.32256759</td></tr>
+                            <tr><td>Skewness</td><td>0.18598676</td></tr>
+                            <tr><td>Kurtosis</td><td>3.88449168</td></tr>
+                            <tr><td>Minimum</td><td>−0.07526603</td></tr>
+                            <tr><td>Maximum</td><td>0.08294108</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h2>Price Trend Analysis</h2>
+
+                    <p>
+                        The figure below shows the plotted price trends with highlighted sections corresponding to ideal periods to engage in options or futures strategies. These strategies appear clear today thanks to the full picture offered by past data, but a market-conscious player may have predicted them thanks to the strong correlation of the commodity with European policies.
+                    </p>
+
+                    <!-- REPLACE THE SRC BELOW WITH YOUR ACTUAL EXPORTED IMAGE PATH -->
+                    <img src="../images/ho1-price-trend.png" alt="HO1 Carbon Emissions price trend and strategy windows" style="width: 100%; border-radius: 6px; margin: 16px 0 6px;">
+                    <p class="figure-note">Figure 1: Price trend and strategy plot</p>
+
+                    <div class="strategy-block">
+                        <h3>Bull Spread — Early 2024</h3>
+                        <p>
+                            The first months of 2024 are characterized by a sharp price decline followed by rapid increase. This dynamic was mainly caused by EU "front-loading" the auction of carbon permits to fund the REPowerEU plan. Front-loading means that some of the permits scheduled to be auctioned in future years were instead auctioned in 2024. The increased supply initially caused a sharp price drop. The market then realized that the anticipated permits would not be available for auction in the future, so the price began to climb up again.
+                        </p>
+                        <p>
+                            In this situation, a bull spread would be a good strategy to profit from the price increase while still being protected from the possibility of another price fall. The expectation would have been that the prices would resettle to a normal level, so it would make sense to set there the high strike price, giving up on any profits coming from an extra-ordinary price increase. On the other hand, this allows to set a floor to a potential loss related to the eventuality of more permits being front-loaded, while making the strategy cheaper than a normal long call, that could be riskier as the resettlement process could take longer than expected.
+                        </p>
+                    </div>
+
+                    <div class="strategy-block">
+                        <h3>Covered Call — Late 2024</h3>
+                        <p>
+                            Late 2024 was instead characterized by a calmer sea. No policy changes were on the horizon, and the market was waiting to see the verified emission reports from the recently included shipping sector. This was a good period to profit from stability through a covered call. With a long position on the stock, shorting a call meant pocketing the premium, generating "synthetic yield" during a period where capital gains from price appreciation were unlikely.
+                        </p>
+                    </div>
+
+                    <div class="strategy-block">
+                        <h3>Protective Put — Early 2025</h3>
+                        <p>
+                            In early 2025 the EU regulators announced an update to the benchmarks for "Free Allocations" given to heavy industries. Softer than expected requirements would have meant that industrial companies suddenly had a surplus of credits to sell, causing a price decrease. A player interested in hedging against this risk could have taken on a protective put strategy. Owning a long position on the commodity, going long on a put would have created an opposite position to offset the loss in the case of a price fall. A protective put would then act as an insurance, limiting the losses at the premium's cost.
+                        </p>
+                    </div>
+
+                    <div class="strategy-block">
+                        <h3>Futures Hedging — Early 2026</h3>
+                        <p>
+                            At the start of 2026, another price crash is in sight. 2025 ended with high prices, possibly also due to the low volume of auctions caused by 2024's front-loading strategy. Geopolitical tensions could also be the reason of the increase, as energy companies face a shortage in the supply of oil and gas, and they might have increased their permits demand to start burning coal. Anyhow, the market expected the EU to increase the permits supply, to stop the price surge and help companies meet their needs in this difficult period.
+                        </p>
+                        <p>
+                            In this scenario, hedging can be done by entering a short futures position before the price crash, locking in the high price with no premium costs. Once the price crash occurs, the firm closes the position by entering a long futures contract, effectively buying back the obligation at the new, lower, market price. The difference between the high initial sale price and the lower repurchase price generates a profit that offsets the loss in value of the physical carbon credits previously held in the portfolio.
+                        </p>
+                    </div>
+
+                    <h2>Volatility Analysis</h2>
+
+                    <p>
+                        The 30-day rolling volatility plot shows the monthly volatility average since 2024. The analysis of this plot serves as a further confirmation of the validity of the selected strategies, because volatility is one of the main drivers of an option's price.
+                    </p>
+
+                    <!-- REPLACE THE SRC BELOW WITH YOUR ACTUAL EXPORTED IMAGE PATH -->
+                    <img src="../images/ho1-rolling-volatility.png" alt="HO1 30-day rolling volatility" style="width: 100%; border-radius: 6px; margin: 16px 0 6px;">
+                    <p class="figure-note">Figure 2: 30-day rolling volatility plot</p>
+
+                    <p>
+                        The price spikes of early 2024 meant great market uncertainty, driving the volatility to its highest level during the analyzed time frame, therefore making a call option extremely expensive. A bull spread on the other hand offsets this cost thanks to the premium received by shorting the second call at the higher strike price. Because a higher strike price reduces the premium, the strategy would still require an initial investment.
+                    </p>
+                    <p>
+                        From mid-2024 to the start of 2025 volatility remained stable around its lowest level. During this period single option strategies were more viable as the premium wasn't driven up by extreme volatility. Selling a covered call therefore provided a modest but low-risk income, allowing the portfolio to avoid stagnation. On the other hand, this also made buying insurance through a protective put pretty cheap, establishing a bottom floor but not capping any potential profit.
+                    </p>
+                    <p>
+                        Finally, volatility surged once again during the first months of 2026, making an option hedge too expensive compared to a futures contract. Hedging through futures allowed to lock in the high prices from the end of 2025 and perfectly offset the losses from the 2026 crash without paying upfront premiums to an overpriced options market.
+                    </p>
+
+                    <div class="conclusion-box">
+                        <h2>Conclusion</h2>
+                        <p>
+                            The analysis of the HO1 Carbon market between 2024 and 2026 demonstrates the strong connection between price movements and the broader European regulatory and geopolitical landscape. By synthesizing price trends and volatility, this study highlights some of the various possible strategies that allow to benefit from an unstable commodity like this one. From a sustainable finance perspective, these results illustrate the complexity of managing risk in a market where carbon is a political commodity. As the EU continues to tighten its climate mandates, the ability to navigate these policy-driven cycles using a sophisticated toolkit of derivatives will remain a fundamental requirement for ensuring financial stability during the green transition.
+                        </p>
+                    </div>
+
+                    <p class="academic-note">
+                        This post is based on an academic paper written for the Commodity Risk Management course, Master's in Sustainable Finance, Ca' Foscari University of Venice, April 2026.
+                    </p>
+
+                </div>
+
+                <hr>
+
+                <a href="../blog.html" style="font-weight: bold;">← Back to Blog List</a>
+
+            </article>
+
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-info">
+                <p>You're a recruiter? Contact me!</p>
+                <strong>Email:</strong> <a href="mailto:riccardo.fin@gmail.com">riccardo.fin@gmail.com</a>
+            </div>
+            <div class="footer-links">
+                <ul>
+                    <li><a href="https://www.linkedin.com/in/riccardo-fin-376503292" target="_blank">LinkedIn</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2026 Riccardo Fin. Built with HTML and CSS.
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+</body>
+</html>
