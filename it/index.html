@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Riccardo Fin - Portfolio</title>
+    
+    <!-- Aggiunto ../ per pescare le immagini e il CSS dalla cartella principale -->
+    <link rel="icon" type="image/jpeg" href="../images/Icon.jpeg">
+    <link rel="stylesheet" href="../style.css">
+    
+    <!-- Theme check script to avoid flash of light mode -->
+    <script>
+        (function() {
+            const storedTheme = localStorage.getItem('theme');
+            const theme = storedTheme || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+            document.documentElement.setAttribute('data-theme', theme);
+        })();
+    </script>
+</head>
+<body>
+
+    <!-- Sticky Navigation Bar -->
+    <div class="nav-bar">
+        <div class="nav-container">
+            <a href="index.html" class="logo-link">
+                <div class="logo">
+                    <img src="../images/Logo.png" alt="Riccardo Fin Logo">
+                    <span>PORTFOLIO</span>
+                </div>
+            </a>
+            
+            <div class="nav-actions">
+                <!-- Language Switch Link (Italian Active -> punta all'inglese nella cartella principale) -->
+                <a href="../index.html" class="lang-switch it-active" aria-label="Switch to English">
+                    <span class="lang-slider"></span>
+                    <span class="lang-option lang-en">EN</span>
+                    <span class="lang-option lang-it">IT</span>
+                </a>
+
+                <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+                    <!-- Sun/Moon icon injected by JS -->
+                </button>
+                <button class="nav-toggle" aria-expanded="false" aria-controls="site-nav" aria-label="Toggle navigation menu">
+                    <span class="bars"></span>
+                </button>
+                <nav id="site-nav">
+                    <ul>
+                        <li><a href="index.html" class="active">Home</a></li>
+                        <li><a href="cv.html">Curriculum</a></li>
+                         <li><a href="#" id="blog-it-link">Blog</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+
+    <!-- Home Header Hero Banner -->
+    <header class="home-header">
+        <div class="hero-content">
+            <h1>Riccardo Fin</h1>
+            <p>Finanza Sostenibile ed Economia</p>
+        </div>
+    </header>
+
+    <main>
+        <section class="profile-card">
+            <img src="../images/profile.jpg" alt="Riccardo Fin" class="profile-pic">
+            
+            <div class="profile-content">
+                <h2>Riccardo Fin</h2>
+                <p>
+                    Ciao, sono un dottore in Economia Aziendale e attualmente frequento la magistrale in <strong>Finanza Sostenibile</strong> all'Università Ca' Foscari di Venezia. 
+                </p>
+                <p>"Ho scelto questo percorso accademico perché mi appassionano il dinamismo e la visione orientata al futuro della finanza. Credo fermamente che la sostenibilità diventerà il fulcro di questo settore, e che porterà un'entusiasmante ondata di innovazione sui mercati."
+                </p>
+                <p>Fuori dal contesto accademico, mi ritrovo spesso a nerdare su videogiochi e giochi da tavolo, a suonare la chitarra e a fare passeggiate in montagna.</p>
+                <p>
+                    L'obiettivo di questo sito è condividere il mio percorso professionale, insieme alle mie ricerche accademiche e personali.
+                </p>
+                
+                <a href="cv.html" class="cv-link">Guarda il mio CV completo</a>
+
+            </div>
+        </section>
+    </main>
+    
+<footer>
+    <div class="footer-content">
+        
+        <div class="footer-info">
+            
+            <p>
+                Sei un recruiter? Contattami!
+            </p>
+            <strong>Email:</strong> <a href="mailto:riccardo.fin@gmail.com">riccardo.fin@gmail.com</a>
+        </div>
+
+        <div class="footer-links">
+            <ul>
+                <li><a href="https://www.linkedin.com/in/riccardo-fin-376503292" target="_blank">LinkedIn</a></li>
+            </ul>
+        </div>
+
+    </div>
+
+    <div class="footer-bottom">
+        &copy; 2026 Riccardo Fin. Creato con HTML e CSS.
+    </div>
+    <!-- Aggiunto ../ per pescare lo script dalla cartella principale -->
+    <script src="../script.js"></script>
+</footer>
+
+
+    <!-- Pop-up Modale per il Blog -->
+    <div class="modal-overlay" id="blog-modal">
+        <div class="modal-content">
+            <h3>Blog in Inglese</h3>
+            <p> Il blog è disponibile solo in lingua inglese. Vuoi passare alla versione inglese?</p>
+            <div class="modal-actions">
+                <button class="modal-btn modal-btn-cancel" id="close-modal">Annulla</button>
+                <a href="../blog.html" class="modal-btn modal-btn-confirm">Vai al Blog (EN)</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Il richiamo allo script deve stare qui sotto, come lo hai già -->
+    <script src="../script.js"></script>
+</body>
+</html>
+
+</body>
+</html>

@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Curriculum - Riccardo Fin</title>
+    
+    <!-- Percorsi aggiornati con ../ per pescare file dalla cartella principale -->
+    <link rel="icon" type="image/jpeg" href="../images/Icon.jpeg">
+    <link rel="stylesheet" href="../style.css">
+    
+    <!-- Theme check script to avoid flash of light mode -->
+    <script>
+        (function() {
+            const storedTheme = localStorage.getItem('theme');
+            const theme = storedTheme || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+            document.documentElement.setAttribute('data-theme', theme);
+        })();
+    </script>
+</head>
+<body class="internal-page">
+
+    <!-- Sticky Navigation Bar -->
+    <div class="nav-bar">
+        <div class="nav-container">
+            <a href="index.html" class="logo-link">
+                <div class="logo">
+                    <img src="../images/Logo.png" alt="Riccardo Fin Logo">
+                    <span>Curriculum</span>
+                </div>
+            </a>
+            
+            <div class="nav-actions">
+                <!-- Language Switch Link (Italian Active -> punta all'inglese) -->
+                <a href="../cv.html" class="lang-switch it-active" aria-label="Passa all'inglese">
+                    <span class="lang-slider"></span>
+                    <span class="lang-option lang-en">EN</span>
+                    <span class="lang-option lang-it">IT</span>
+                </a>
+
+                <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+                    <!-- Sun/Moon icon injected by JS -->
+                </button>
+                <button class="nav-toggle" aria-expanded="false" aria-controls="site-nav" aria-label="Toggle navigation menu">
+                    <span class="bars"></span>
+                </button>
+                <nav id="site-nav">
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="cv.html" class="active">Curriculum</a></li>
+                        <li><a href="#" id="blog-it-link">Blog</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+
+    <!-- Page Header Hero Banner -->
+    <header class="page-header">
+        <div class="hero-content">
+            <h1>Curriculum Vitae</h1>
+            <p>Percorso Accademico e Professionale</p>
+        </div>
+    </header>
+
+    <main>
+        <div class="content-card">
+            <section class="cv-header">
+                <h2>Riccardo Fin</h2>
+                <p>
+                    <strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/riccardo-fin-376503292" target="_blank">Guarda Profilo</a>
+                </p>
+            </section>
+
+            <hr>
+
+            <section>
+                <h2>Esperienza Lavorativa</h2>
+                
+                <div class="cv-timeline">
+                    
+                    <article>
+                        <p><em>Ago 2025 - Set 2025</em></p> 
+                        <h3>Tirocinante Analista Finanziario</h3>
+                        <span class="institution">
+                            <a href="https://flexstructures.com/" target="_blank">FleXstructures GmbH</a> (Sviluppo software)
+                        </span>
+                    </article>
+
+                    <article>
+                        <p><em>Attuale</em></p>
+                        <h3>Impiegato</h3>
+                        <span class="institution">
+                            <a href="https://www.blucom.info/" target="_blank">Blucom SRL</a> (Forniture tecniche industriali)
+                        </span>
+                        <p>Addetto alla gestione del magazzino e all'organizzazione del software gestionale nell'azienda di famiglia.</p>
+                    </article>
+
+                    <article>
+                        <p><em>Mag 2023 - Attuale</em></p>
+                        <h3>Cameriere</h3>
+                        <span class="institution">Alle Acque Pizza e Tradizione (Ristorazione)</span>
+                    </article>
+                    
+                </div> 
+            </section>
+
+            <hr>
+<section>
+    <h2>Volontariato</h2>
+    
+    <div class="cv-timeline">
+        <article>
+            <p><em>Luglio 2026</em></p> 
+            <h3>Volontario</h3>
+            <span class="institution">
+                <a href="https://www.seeds.is/" target="_blank">SEEDS</a> (Camp 0.49) 
+            </span>
+            <p>Esperienza di volontariato internazionale sul campo in Islanda, focalizzata sulla tutela ambientale e sull'azione climatica. Ho collaborato all'interno di un team multiculturale per implementare pratiche di conservazione e promuovere la consapevolezza ecologica, traducendo in azioni concrete il mio forte interesse per la sostenibilità.</p>
+        </article>
+    </div> 
+</section>
+<hr>
+            <section>
+                <h2>Istruzione</h2>
+
+                <div class="cv-timeline">
+
+                    <article>
+                        <p><em>Set 2025 - Attuale</em></p>
+                        <h3>Laurea Magistrale in Finanza Sostenibile</h3>
+                        <span class="institution">
+                            <a href="https://www.unive.it/web/it/6254/home" target="_blank">Università Ca' Foscari di Venezia</a>
+                        </span>
+                        <p>Corso erogato interamente in lingua inglese.</p>
+                    </article>
+
+                    <article>
+                        <p><em>Gen 2025 - Giu 2025</em></p>
+                        <h3>Progetto Erasmus+</h3>
+                        <span class="institution">
+                            <a href="https://www.sh.se/english/sodertorn-university" target="_blank">Södertörns Högskola</a> (Stoccolma, Svezia)
+                        </span>
+                        <p>Progetto Erasmus+ di 6 mesi focalizzato sullo studio dell'economia aziendale.</p>
+                    </article>
+
+                    <article>
+                        <p><em>Set 2022 - Ott 2025</em></p>
+                        <h3>Laurea Triennale in Economia Aziendale</h3>
+                        <span class="institution">
+                            <a href="https://www.unive.it/web/it/8633/home" target="_blank">Università Ca' Foscari di Venezia</a>
+                        </span>
+                        <p>Voto di laurea: 101/110</p>
+                        <p>
+                            <em>
+                                Tesi: <a href="posts/neo-brokers-thesis.html" style="font-weight: bold">"La rivoluzione digitale dei neo-brokers: il nuovo volto dell'investitore retail"</a>
+                            </em>
+                        </p>
+                    </article>
+                    
+                </div> 
+            </section>
+            <hr>
+        </div> 
+
+        <div class="content-card">
+            <section>
+                <h2>Competenze e Interessi</h2>
+
+                <div class="skills-grid">
+                    
+                    <div class="skill-column">
+                        <h3>Lingue</h3>
+                        <ul class="skill-list">
+                            <li>Italiano (Madrelingua)</li>
+                            <li>
+                                <strong>Inglese (Livello C2)</strong>
+                                <span style="display: block; font-size: 0.85rem; color: #666; font-style: italic; margin-top: 4px;">
+                                    Cambridge English Level C2 (Grade A) - Marzo 2026
+                                </span>
+                            </li>
+                            <li>Spagnolo (Intermedio)</li>
+                        </ul>
+
+                        <h3 style="margin-top: 30px;">Competenze Tecniche</h3>
+                        <ul class="skill-list">
+                            <li>
+                                Certificazione <a href="https://www.bloomberg.com/professional/products/bloomberg-terminal/education/certificate-courses/" target="_blank">
+                                    Bloomberg Market Concepts (BMC)
+                                </a>
+                            </li>
+                            <li>Ottima conoscenza della suite Microsoft Office</li>
+                            <li>Familiarità con i sistemi CRM</li>
+                            <li>Spirito di collaborazione con esperienza in team multiculturali e forte autonomia nel lavoro individuale</li>
+                        </ul>
+                    </div>
+
+                    <div class="skill-column">
+                        <h3>Interessi</h3>
+                        <p>
+                            Studente magistrale in Finanza Sostenibile con un forte interesse per i mercati privati e l'integrazione dei fattori ESG (ambientali, sociali e di governance) nelle strategie aziendali e nelle dinamiche di mercato. Dopo uno scambio a Stoccolma, sono motivato a costruire una carriera a lungo termine nei Paesi Nordici, concentrandomi sul loro peculiare panorama economico. Seguo con passione gli sviluppi nell'innovazione finanziaria e nella finanza personale.
+                        </p>
+                    </div>
+
+                </div> 
+            </section>
+        </div>
+    </main>
+
+<footer>
+    <div class="footer-content">
+        
+        <div class="footer-info">
+            <p>
+                Sei un recruiter? Contattami!
+            </p>
+            <strong>Email:</strong> <a href="mailto:riccardo.fin@gmail.com">riccardo.fin@gmail.com</a>
+        </div>
+
+        <div class="footer-links">
+            <ul>
+                <li><a href="https://www.linkedin.com/in/riccardo-fin-376503292" target="_blank">LinkedIn</a></li>
+            </ul>
+        </div>
+
+    </div>
+
+    <div class="footer-bottom">
+        &copy; 2026 Riccardo Fin. Creato con HTML e CSS.
+    </div>
+</footer>
+    <!-- Script pescato dalla root -->
+    <script src="../script.js"></script>
+
+    <!-- Pop-up Modale per il Blog -->
+    <div class="modal-overlay" id="blog-modal">
+        <div class="modal-content">
+            <h3>Blog in Inglese</h3>
+            <p>Il blog è disponibile solo in lingua inglese. Vuoi passare alla versione inglese?</p>
+            <div class="modal-actions">
+                <button class="modal-btn modal-btn-cancel" id="close-modal">Annulla</button>
+                <a href="../blog.html" class="modal-btn modal-btn-confirm">Vai al Blog (EN)</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Il richiamo allo script deve stare qui sotto, come lo hai già -->
+    <script src="../script.js"></script>
+</body>
+</html>
+
+</body>
+</html>
