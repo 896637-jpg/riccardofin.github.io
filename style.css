@@ -1,151 +1,300 @@
-/* --- 1. CONFIGURAZIONE GENERALE E VARIABILI --- */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap');
+
+/* --- 1. DESIGN SYSTEM & VARIABLES --- */
 :root {
-    --bg-color: #F4F7F6;
-    --text-color: #222222;
-    --accent-color: #2E8B57;
-    --border-color: #DDDDDD;
-    --card-bg: #FFFFFF;
-    
+    /* Fonts */
+    --font-sans: 'Plus Jakarta Sans', sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+
+    /* Content Width */
     --content-width: 1100px;
-    --header-height-home: 60vh; 
-    --header-height-page: 30vh;
+    --header-height-home: 55vh; 
+    --header-height-page: 40vh;
+    
+    /* Transitions */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-* { box-sizing: border-box; margin: 0; padding: 0; }
+/* Light Theme (Sage & Emerald) */
+:root, [data-theme="light"] {
+    --bg-primary: #F4F7F5;
+    --bg-secondary: #FFFFFF;
+    --text-primary: #111D17;
+    --text-secondary: #475850;
+    --accent-color: #0E8354;
+    --accent-hover: #075E3B;
+    --accent-muted: rgba(14, 131, 84, 0.1);
+    --border-color: #E2E8E4;
+    --card-shadow: 0 8px 30px rgba(17, 29, 23, 0.02), 0 1px 3px rgba(17, 29, 23, 0.01);
+    --card-shadow-hover: 0 16px 40px rgba(17, 29, 23, 0.04), 0 1px 5px rgba(17, 29, 23, 0.01);
+    --nav-bg: rgba(244, 247, 245, 0.35);
+    --glass-bg: rgba(255, 255, 255, 0.92);
+    --glass-border: rgba(14, 131, 84, 0.08);
+    --hero-overlay: rgba(17, 29, 23, 0.3);
+    --timeline-bg: #E2E8E4;
+    --footer-bg: #0C1411;
+    --footer-text: #7E9087;
+    --footer-title: #FFFFFF;
+    --theme-toggle-bg: #E2E8E4;
+    --btn-header-bg: rgba(255, 255, 255, 0.25);
+    --btn-header-border: rgba(14, 131, 84, 0.15);
+}
 
-body {
-    background-color: var(--bg-color);
-    color: var(--text-color);
-    font-family: 'Roboto', sans-serif;
-    line-height: 1.6;
-    overflow-x: hidden;
+/* Dark Theme (Obsidian & Emerald) */
+[data-theme="dark"] {
+    --bg-primary: #070D0B;
+    --bg-secondary: #0F1613;
+    --text-primary: #F0F6F3;
+    --text-secondary: #8E9F97;
+    --accent-color: #10B981;
+    --accent-hover: #34D399;
+    --accent-muted: rgba(16, 185, 129, 0.12);
+    --border-color: #1A2420;
+    --card-shadow: 0 8px 24px rgba(0, 0, 0, 0.22), 0 1px 2px rgba(0, 0, 0, 0.12);
+    --card-shadow-hover: 0 16px 36px rgba(0, 0, 0, 0.4), 0 0 20px rgba(16, 185, 129, 0.04);
+    --nav-bg: rgba(7, 13, 11, 0.45);
+    --glass-bg: rgba(18, 28, 23, 0.94);
+    --glass-border: rgba(16, 185, 129, 0.12);
+    --hero-overlay: rgba(7, 13, 11, 0.4);
+    --timeline-bg: #1A2420;
+    --footer-bg: #040706;
+    --footer-text: #677A72;
+    --footer-title: #F0F6F3;
+    --theme-toggle-bg: #1A2420;
+    --btn-header-bg: rgba(15, 22, 19, 0.35);
+    --btn-header-border: rgba(16, 185, 129, 0.2);
+}
+
+/* --- 2. BASE STYLES --- */
+* { 
+    box-sizing: border-box; 
+    margin: 0; 
+    padding: 0; 
 }
 
 html {
+    scroll-behavior: smooth;
     overflow-x: hidden;
 }
 
-body > main {
+body {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    font-family: var(--font-sans);
+    line-height: 1.6;
+    overflow-x: hidden;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+main {
     max-width: var(--content-width);
-    margin: -50px auto 0;
-    padding: 0 20px 60px;
+    margin: -60px auto 0;
+    padding: 0 24px 80px;
     position: relative;
     z-index: 10;
 }
 
-body.internal-page > main {
-    margin: -60px auto 0;
+.internal-page main {
+    margin: -50px auto 0;
 }
 
 a {
-    color: var(--accent-color); /* Applica il verde a tutti i link */
-    text-decoration: none;      /* Toglie la sottolineatura di default */
-    transition: color 0.3s ease;
+    color: var(--accent-color);
+    text-decoration: none;
+    transition: var(--transition-smooth);
 }
 
 a:hover {
-    /* Quando passi sopra col mouse, diventa un po' più scuro per effetto */
-    color: #1a5235; 
+    color: var(--accent-hover);
 }
 
-hr { border: 0; border-top: 1px solid var(--border-color); margin: 30px 0; }
+hr { 
+    border: 0; 
+    border-top: 1px solid var(--border-color); 
+    margin: 40px 0; 
+}
 
-/* --- 2. HEADER E LOGO (Stile Bottone) --- */
-/* --- HEADER GENERALE --- */
-header {
+h1, h2, h3, h4, h5, h6 {
+    color: var(--text-primary);
+    font-weight: 700;
+    line-height: 1.25;
+}
+
+/* --- 3. STICKY NAVIGATION BAR --- */
+.nav-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    background-color: var(--nav-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--glass-border);
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.nav-container {
+    max-width: var(--content-width);
+    margin: 0 auto;
+    padding: 12px 24px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 5%;
-    position: relative;
-    text-shadow: 0 2px 10px rgba(0,0,0,0.7);
-
-    /* --- NUOVA LINEA ANTRACITE --- */
-    /* 5px di spessore, linea solida, colore Antracite (#2B2B2B) */
-    border-bottom: 5px solid #2B2B2B; 
-    
-    /* Questo assicura che il bordo sia incluso nell'altezza totale */
-    box-sizing: border-box; 
 }
 
-/* Stile del Logo (Scatola statica, non cliccabile) */
-header .logo {
+/* Logo link styling */
+.nav-bar .logo-link {
     display: flex;
     align-items: center;
-    gap: 15px;
-    
-    /* Manteniamo lo stile "box" estetico */
-    padding: 10px 20px;
-    border: 2px solid rgba(255, 255, 255, 0.6);
-    background-color: rgba(0, 0, 0, 0.4); 
-    backdrop-filter: blur(4px);
-    border-radius: 8px;
-    
-    /* Rimuoviamo cursori e transizioni da link */
-    cursor: default; 
+    text-decoration: none;
 }
 
-/* Immagine Logo */
-header .logo img {
-    height: 100px;
+.nav-bar .logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.nav-bar .logo img {
+    height: 48px;
     width: auto;
     object-fit: contain;
+    transition: var(--transition-smooth);
 }
 
-/* Testo "PORTFOLIO/CV" */
-header .logo span {
-    font-family: 'Roboto Mono', monospace;
-    font-size: 1.2rem;
-    color: #FFFFFF;
+.nav-bar .logo-link:hover .logo img {
+    transform: scale(1.05);
+}
+
+.nav-bar .logo span {
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    font-weight: 700;
     letter-spacing: 2px;
+    color: var(--text-primary);
     text-transform: uppercase;
-    font-weight: bold;
 }
 
-/* --- 3. NAVIGAZIONE --- */
-nav ul { 
-    list-style: none; 
-    display: flex; 
-    gap: 15px; 
+/* Navigation Actions container */
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 16px;
 }
 
-/* Hamburger button (hidden on desktop) */
-.nav-toggle {
-    display: none;
+/* Nav Menu */
+nav ul {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+nav a {
+    font-family: var(--font-sans);
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 8px 16px;
+    border-radius: 8px;
+    background-color: var(--btn-header-bg);
+    border: 1px solid var(--btn-header-border);
+    transition: var(--transition-smooth);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+nav a:hover {
+    color: #FFFFFF;
+    background-color: var(--accent-color);
+    border-color: var(--accent-color);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px var(--accent-muted);
+}
+
+nav a.active {
+    color: #FFFFFF !important;
+    background-color: var(--accent-color);
+    border-color: var(--accent-color);
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+    pointer-events: none;
+}
+
+/* Theme Toggle Button */
+.theme-toggle {
+    background: var(--btn-header-bg);
+    border: 1px solid var(--btn-header-border);
+    color: var(--text-primary);
+    padding: 8px;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
     align-items: center;
     justify-content: center;
-    gap: 10px;
-    padding: 10px 16px;
-    border: 2px solid rgba(255, 255, 255, 0.6);
-    background-color: rgba(0, 0, 0, 0.4);
+    transition: var(--transition-smooth);
+    width: 38px;
+    height: 38px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.theme-toggle:hover {
+    background-color: var(--accent-color);
+    border-color: var(--accent-color);
     color: #FFFFFF;
+    transform: rotate(15deg) translateY(-1px);
+    box-shadow: 0 4px 12px var(--accent-muted);
+}
+
+.theme-toggle svg {
+    width: 18px;
+    height: 18px;
+    fill: currentColor;
+}
+
+/* Hamburger button */
+.nav-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 38px;
+    height: 38px;
+    background: var(--btn-header-bg);
+    border: 1px solid var(--btn-header-border);
     border-radius: 8px;
-    font-family: 'Roboto Mono', monospace;
-    font-size: 0.9rem;
-    text-transform: uppercase;
-    letter-spacing: 1px;
     cursor: pointer;
-    backdrop-filter: blur(4px);
+    padding: 0;
+    z-index: 1001;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    transition: var(--transition-smooth);
+}
+
+.nav-toggle:hover {
+    background-color: var(--accent-muted);
+    border-color: var(--accent-color);
 }
 
 .nav-toggle .bars {
-    display: inline-block;
-    width: 20px;
+    display: block;
+    width: 18px;
     height: 2px;
-    background-color: #FFFFFF;
+    background-color: var(--text-primary);
+    transition: var(--transition-smooth);
     position: relative;
-    transition: transform 0.3s ease, background-color 0.3s ease;
 }
 
 .nav-toggle .bars::before,
 .nav-toggle .bars::after {
     content: '';
     position: absolute;
-    left: 0;
-    width: 20px;
+    width: 18px;
     height: 2px;
-    background-color: #FFFFFF;
-    transition: transform 0.3s ease, top 0.3s ease, opacity 0.2s ease;
+    background-color: var(--text-primary);
+    transition: var(--transition-smooth);
+    left: 0;
 }
 
 .nav-toggle .bars::before { top: -6px; }
@@ -165,438 +314,509 @@ nav ul {
     transform: rotate(-45deg);
 }
 
-/* Stile Base dei Bottoni */
-nav a {
-    text-decoration: none;
-    color: #FFFFFF;
-    font-weight: bold;
-    text-transform: uppercase;
-    font-size: 1rem;
-    padding: 12px 25px;
-    
-    /* Sfondo semitrasparente scuro */
-    border: 2px solid rgba(255, 255, 255, 0.6);
-    background-color: rgba(0, 0, 0, 0.4); 
-    backdrop-filter: blur(4px);
-    
-    /* Angoli arrotondati (uguali al logo) */
-    border-radius: 8px; 
-    
-    transition: all 0.3s ease;
-}
-
-/* 1. HOVER (Quando passi col mouse): Diventa BIANCO */
-nav a:hover {
-    background-color: #FFFFFF;
-    color: #000000; /* Testo nero */
-    border-color: #FFFFFF;
-    transform: translateY(-2px); /* Piccolo saltello in alto */
-    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-    text-shadow: none;
-}
-
-/* 2. ACTIVE (La pagina in cui sei): Diventa SCURO con bordo VERDE */
-nav a.active {
-    background-color: #023020; /* Sfondo Nero pieno */
-    color: #FFFFFF;            /* Testo Bianco */
-    
-    /* Usa la variabile verde definita in alto */
-    border-color: var(--accent-color); 
-    
-    /* Ombra interna per effetto "premuto" */
-    box-shadow: inset 0 0 10px rgba(0,0,0,0.8); 
-    
-    /* Impedisce di cliccarlo di nuovo */
-    pointer-events: none; 
-    text-shadow: none;
-}
-
-/* --- 4. CLASSI HEADER SPECIFICHE --- */
-header.home-header {
+/* --- 4. HERO HEADERS --- */
+header.home-header, header.page-header {
     height: var(--header-height-home);
-    background-image: url('images/header.jpg');
     background-size: cover;
     background-position: center;
-    align-items: flex-start;
-    padding-top: 40px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 72px; /* Accounting for sticky nav */
+}
+
+header.home-header {
+    background-image: linear-gradient(var(--hero-overlay), var(--hero-overlay)), url('images/header.jpg');
 }
 
 header.page-header {
     height: var(--header-height-page);
-    background-image: url('images/headerporsche.jpg');
-    background-size: cover;
-    background-position: center;
-    background-position-y: 50%;
-    align-items: flex-start;
-    padding-top: 40px;
+    min-height: 340px;
+    background-image: linear-gradient(var(--hero-overlay), var(--hero-overlay)), url('images/headerporsche.jpg');
+    background-position-y: 45%;
 }
 
-/* --- 5. STYLE CARD E CONTENUTI --- */
+.hero-content {
+    text-align: center;
+    max-width: 800px;
+    padding: 0 24px;
+    z-index: 5;
+    color: #FFFFFF;
+}
+
+.hero-content h1 {
+    font-family: var(--font-sans);
+    font-size: 3.5rem;
+    font-weight: 800;
+    letter-spacing: -1.5px;
+    color: #FFFFFF;
+    margin-bottom: 24px;
+    text-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    animation: fadeInDown 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hero-content h1:last-child {
+    margin-bottom: 0;
+}
+
+.hero-content p {
+    font-family: var(--font-mono);
+    font-size: 1rem;
+    color: #A7F3D0; /* Soft green */
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-weight: 500;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+    animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both;
+}
+
+/* --- 5. CARDS (GLASSMORPHISM) --- */
 .content-card, .profile-card {
-    background-color: var(--card-bg);
-    padding: 50px;
-    border-radius: 8px;
-    box-shadow: 0 20px 50px rgba(0,0,0,0.05);
-    margin-bottom: 30px;
+    background-color: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    padding: 48px;
+    border-radius: 16px;
+    box-shadow: var(--card-shadow);
+    margin-bottom: 32px;
+    transition: var(--transition-smooth);
 }
 
+.content-card:hover, .profile-card:hover {
+    box-shadow: var(--card-shadow-hover);
+    border-color: rgba(16, 185, 129, 0.2);
+}
+
+/* Profile Card Custom Layout */
 .profile-card {
     display: flex;
-    gap: 40px;
+    gap: 48px;
     align-items: center;
     flex-wrap: wrap;
 }
 
 .profile-pic {
-    width: 230px;
-    height: 230px;
+    width: 200px;
+    height: 200px;
     object-fit: cover;
     border-radius: 50%;
-    border: 4px solid #fff;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    border: 4px solid var(--bg-secondary);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    transition: var(--transition-bounce);
 }
 
-/* --- AGGIORNAMENTO CARD PROFILO --- */
+.profile-card:hover .profile-pic {
+    transform: scale(1.04) rotate(2deg);
+}
 
 .profile-content {
     flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center; /* Centra il testo verticalmente rispetto alla foto */
-    min-width: 300px; /* Evita che si schiacci troppo su schermi piccoli */
+    min-width: 300px;
 }
 
-/* 1. IL NOME (Titolo H2) - Molto più grande e deciso */
 .profile-content h2 {
-    font-family: 'Roboto Mono', monospace;
-    font-size: 2.8rem; /* Aumentato molto (prima era default o piccolo) */
-    font-weight: 700;
-    margin-bottom: 20px;
-    color: #000000;
-    line-height: 1.1;
-    letter-spacing: -1px; /* Rende il titolo più compatto e moderno */
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 16px;
+    letter-spacing: -1px;
 }
 
-/* 2. IL PARAGRAFO "LEAD" (Il primo paragrafo) */
-/* Usiamo :first-of-type per selezionare automaticamente il primo <p> */
-.profile-content p:first-of-type {
-    font-size: 1.3rem; /* Testo più grande del normale */
-    font-weight: 400;
-    color: #222;       /* Nero quasi pieno */
-    line-height: 1.5;
-    margin-bottom: 25px;
-    border-left: 4px solid var(--accent-color); /* Linea verde elegante a sinistra */
-    padding-left: 20px; /* Spazio per la linea verde */
-}
-
-/* 3. GLI ALTRI PARAGRAFI (Hobby, note, ecc.) */
 .profile-content p {
-    font-size: 1.1rem; /* Leggermente più grande dello standard */
-    color: #555;       /* Grigio scuro per togliere peso visivo */
-    margin-bottom: 15px;
-    line-height: 1.7;  /* Ottima leggibilità */
-    max-width: 650px;  /* Evita che le righe diventino lunghissime, migliorando la lettura */
+    font-size: 1.05rem;
+    color: var(--text-secondary);
+    margin-bottom: 16px;
+    line-height: 1.7;
 }
 
-/* Il Link finale "View full CV" */
-.profile-content a {
-    display: inline-block;
-    margin-top: 10px;
-    font-size: 1.1rem;
-    letter-spacing: 0.5px;
+.profile-content p:first-of-type {
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: var(--text-primary);
+    line-height: 1.6;
+    margin-bottom: 24px;
+    border-left: 4px solid var(--accent-color);
+    padding-left: 20px;
 }
 
+.profile-content a.cv-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 700;
+    font-size: 1.05rem;
+    margin-top: 8px;
+}
+
+.profile-content a.cv-link::after {
+    content: '→';
+    transition: var(--transition-smooth);
+}
+
+.profile-content a.cv-link:hover::after {
+    transform: translateX(4px);
+}
+
+/* University logos container on CV & Homepage */
 .university-logos {
     display: flex;
-    gap: 30px;
+    gap: 32px;
     align-items: center;
-    margin-top: 20px;
+    margin-top: 32px;
 }
-.uni-logo { height: 60px; width: auto; opacity: 0.9; }
 
-/* --- STILE TIMELINE PER IL CV (Versione Font Maggiorato) --- */
+.university-logos-title {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 12px;
+}
 
+.uni-logo {
+    height: 48px;
+    width: auto;
+    opacity: 0.45;
+    transition: var(--transition-smooth);
+    filter: grayscale(1);
+}
+
+[data-theme="dark"] .uni-logo {
+    filter: grayscale(1) invert(1);
+}
+
+.uni-logo:hover {
+    opacity: 0.95;
+    filter: grayscale(0);
+}
+
+[data-theme="dark"] .uni-logo:hover {
+    filter: grayscale(0) invert(0);
+}
+
+/* --- 6. CV TIMELINE --- */
 .cv-timeline {
-    border-left: 1px solid #BBBBBB; 
-    padding-left: 35px; /* Un po' più di spazio laterale */
-    margin-left: 10px;
+    border-left: 2px solid var(--border-color);
+    padding-left: 32px;
+    margin-left: 8px;
     position: relative;
+    margin-top: 24px;
 }
 
-/* Coda tratteggiata */
 .cv-timeline::after {
     content: '';
     position: absolute;
-    bottom: -30px;
-    left: -1px;
-    width: 1px;
-    height: 30px;
-    border-left: 1px dashed #BBBBBB; 
+    bottom: -20px;
+    left: -2px;
+    width: 2px;
+    height: 20px;
+    background: linear-gradient(to bottom, var(--border-color), transparent);
 }
 
-/* Spaziatura tra le esperienze aumentata */
 .cv-timeline article {
     position: relative;
-    margin-bottom: 50px; /* Più aria tra un lavoro e l'altro */
+    margin-bottom: 40px;
 }
 
 .cv-timeline article:last-child {
     margin-bottom: 0;
 }
 
-/* Il Pallino (Ricalibrato per il font più grande) */
 .cv-timeline article::before {
     content: '';
     position: absolute;
-    left: -35px; /* Adattato al nuovo padding */
-    margin-left: -0.5px;
-    transform: translateX(-50%);
-    
-    /* Abbassato leggermente perché il font del titolo è più grande */
-    top: 10px;    
-    
-    width: 11px;  /* Leggermente più grande per bilanciare il testo */
-    height: 11px;
-    
-    border-radius: 50%; 
-    background-color: var(--card-bg); 
-    border: 2px solid var(--accent-color);
+    left: -38px;
+    top: 6px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: var(--bg-secondary);
+    border: 3px solid var(--accent-color);
     z-index: 2;
+    transition: var(--transition-smooth);
+    box-shadow: 0 0 0 0px var(--accent-muted);
 }
 
-/* Date - Più grandi */
+.cv-timeline article:hover::before {
+    background-color: var(--accent-color);
+    box-shadow: 0 0 0 6px var(--accent-muted);
+    transform: scale(1.2);
+}
+
 .cv-timeline article em {
     display: inline-block;
     color: var(--accent-color);
-    font-family: 'Roboto Mono', monospace;
-    font-size: 1rem; /* Aumentato da 0.85rem */
-    font-weight: bold;
-    margin-bottom: 8px;
-    letter-spacing: -0.5px;
-}
-
-/* Titoli Ruoli - Molto più grandi */
-.cv-timeline h3 {
-    margin: 0 0 10px 0; /* Aggiunto margine sotto */
-    font-size: 1.5rem; /* Aumentato da 1.1rem (Bello evidente) */
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    font-style: normal;
     font-weight: 700;
-    line-height: 1.2;
+    margin-bottom: 6px;
 }
 
-/* Descrizione / Nome Azienda - Più grandi e ariosi */
-.cv-timeline p {
+.cv-timeline h3 {
+    font-size: 1.35rem;
+    font-weight: 700;
+    margin-bottom: 4px;
+}
+
+.cv-timeline .institution {
+    font-weight: 600;
+    color: var(--text-primary);
+    font-size: 1.05rem;
+    display: inline-block;
     margin-bottom: 8px;
-    font-size: 1.15rem; /* Aumentato da 1rem */
-    color: #444;        /* Grigio leggermente più scuro per leggibilità */
-    line-height: 1.8;   /* Interlinea aumentata per riempire verticalmente */
 }
 
-/* Se usi liste puntate dentro la timeline (es. mansioni) */
-.cv-timeline ul {
-    margin-top: 10px;
-    padding-left: 20px;
-}
-
-.cv-timeline li {
-    font-size: 1.1rem;
-    margin-bottom: 5px;
+.cv-timeline p {
+    color: var(--text-secondary);
+    font-size: 1rem;
     line-height: 1.6;
 }
 
-
-/* --- STILE SEZIONE SKILLS (CV) --- */
-
-.skills-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr; /* Due colonne uguali */
-    gap: 50px; /* Spazio tra le colonne */
-}
-
-/* Su cellulare le colonne vanno una sotto l'altra */
-@media (max-width: 768px) {
-    .skills-grid {
-        grid-template-columns: 1fr;
-        gap: 30px;
-    }
-}
-
-.skill-list {
-    list-style: none; /* Toglie i pallini standard brutti */
-    padding: 0;
-}
-
-.skill-list li {
-    margin-bottom: 10px;
+.cv-timeline ul {
+    margin-top: 8px;
     padding-left: 20px;
+    list-style-type: none;
+}
+
+.cv-timeline li {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    margin-bottom: 6px;
     position: relative;
 }
 
-/* Aggiungiamo il pallino verde personalizzato */
-.skill-list li::before {
-    content: '•';
-    color: var(--accent-color); /* Il tuo verde */
-    font-weight: bold;
-    font-size: 1.2rem;
+.cv-timeline li::before {
+    content: '→';
+    color: var(--accent-color);
     position: absolute;
-    left: 0;
-    top: -2px;
+    left: -20px;
+    font-weight: bold;
 }
 
+/* --- 7. SKILLS & INTERESTS --- */
+.skills-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+}
 
+.skill-column h3 {
+    font-size: 1.2rem;
+    margin-bottom: 16px;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 8px;
+}
 
+.skill-list {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
 
+.skill-list li {
+    background-color: var(--bg-primary);
+    border: 1px solid var(--border-color);
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--text-primary);
+    transition: var(--transition-smooth);
+}
 
+.skill-list li:hover {
+    border-color: var(--accent-color);
+    background-color: var(--accent-muted);
+    transform: translateY(-2px);
+}
 
+.skill-column p {
+    color: var(--text-secondary);
+    font-size: 1rem;
+    line-height: 1.7;
+}
 
-/* --- STILE BLOG (Griglia e Card) --- */
-
-/* Contenitore a Griglia: dispone le card automaticamente */
+/* --- 8. BLOG GRID & CARDS --- */
 .blog-grid {
     display: grid;
-    /* Questa riga magica crea colonne automatiche larghe almeno 300px */
-    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); 
-    gap: 30px; /* Spazio tra le card */
-    margin-top: 20px;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 24px;
+    margin-top: 24px;
 }
 
-/* La singola Card del Post */
 .blog-card {
-    background-color: var(--card-bg);
-    border-radius: 8px;
-    padding: 30px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.05); /* Ombra leggera */
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background-color: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: 12px;
+    padding: 32px;
+    box-shadow: var(--card-shadow);
+    transition: var(--transition-smooth);
     display: flex;
-    flex-direction: column; /* Per allineare il bottone in fondo */
-    height: 100%; /* Rende tutte le card alte uguali */
-    border: 1px solid transparent;
+    flex-direction: column;
+    height: 100%;
 }
 
-/* Effetto Hover: la card si alza leggermente */
 .blog-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 40px rgba(0,0,0,0.1);
-    border-color: var(--accent-color); /* Bordo verde al passaggio */
+    transform: translateY(-6px);
+    box-shadow: var(--card-shadow-hover);
+    border-color: rgba(16, 185, 129, 0.25);
 }
 
-/* Data del post */
 .blog-date {
-    font-family: 'Roboto Mono', monospace;
-    font-size: 0.85rem;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
     color: var(--accent-color);
-    font-weight: bold;
-    margin-bottom: 10px;
+    font-weight: 700;
+    margin-bottom: 12px;
     display: block;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
-/* Titolo del post nella card */
 .blog-card h3 {
-    font-size: 1.4rem;
-    margin-bottom: 15px;
-    line-height: 1.3;
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 12px;
+    line-height: 1.35;
 }
 
 .blog-card h3 a {
-    text-decoration: none;
-    color: var(--text-color);
-    transition: color 0.3s;
+    color: var(--text-primary);
+    transition: var(--transition-smooth);
 }
 
 .blog-card:hover h3 a {
     color: var(--accent-color);
 }
 
-/* Riassunto del testo */
 .blog-card p {
-    font-size: 1rem;
-    color: #555;
-    margin-bottom: 25px;
-    flex-grow: 1; /* Spinge il bottone verso il basso */
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    margin-bottom: 24px;
+    line-height: 1.6;
+    flex-grow: 1;
 }
 
-/* Bottone "Read Post" */
 .read-more-btn {
-    display: inline-block;
-    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
     color: var(--accent-color);
-    font-weight: bold;
-    font-family: 'Roboto Mono', monospace;
+    font-weight: 700;
     font-size: 0.9rem;
-    border: 2px solid var(--accent-color);
-    padding: 10px 20px;
-    border-radius: 4px;
-    text-align: center;
-    transition: all 0.3s ease;
-    width: fit-content; /* Il bottone è largo quanto il testo */
+    width: fit-content;
 }
 
-.read-more-btn:hover {
-    background-color: var(--accent-color);
-    color: #FFFFFF;
+.read-more-btn::after {
+    content: '→';
+    transition: var(--transition-smooth);
 }
 
-/* --- STILE HEADER DEL SINGOLO POST --- */
+.blog-card:hover .read-more-btn::after {
+    transform: translateX(4px);
+}
 
-/* 1. Resettiamo l'header (toglie le impostazioni della barra di navigazione) */
+/* --- 9. SINGLE POST STYLING --- */
 header.post-header {
-    background: none;      /* Toglie immagini di sfondo */
-    height: auto;          /* Altezza automatica in base al testo */
-    display: block;        /* Toglie il flex che disallineava le cose */
-    padding: 0 0 20px 0;   /* Toglie padding laterali, lascia spazio sotto */
-    margin-bottom: 40px;
-    border-bottom: 1px solid #eeeeee; /* Una linea grigia sottile elegante */
-    text-shadow: none;     /* IMPORTANTE: Toglie l'ombreggiatura nera */
+    background: none !important;
+    height: auto !important;
+    display: block !important;
+    padding: 0 0 24px 0 !important;
+    margin-bottom: 32px !important;
+    border-bottom: 1px solid var(--border-color) !important;
+    text-shadow: none !important;
 }
 
-/* 2. Stile della data/sottotitolo (Verde, piccolo, trasparente) */
 .post-meta {
     color: var(--accent-color);
-    font-family: 'Roboto Mono', monospace;
-    font-size: 0.85rem;       /* Più piccolo */
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
     text-transform: uppercase;
-    font-weight: bold;
-    opacity: 0.6;             /* Rendiamolo leggermente trasparente */
-    margin-bottom: 10px;      /* Spazio tra data e titolo */
-    letter-spacing: 1px;      /* Spaziatura lettere per eleganza */
+    font-weight: 700;
+    margin-bottom: 8px;
+    letter-spacing: 1px;
 }
 
-/* 3. Stile del Titolo (Nero pulito) */
 .post-header h1 {
-    font-family: 'Roboto Mono', monospace;
-    font-size: 2.2rem;
+    font-size: 2.4rem;
+    font-weight: 800;
     line-height: 1.2;
-    color: #222222;           /* Nero scuro (senza ombra) */
-    text-shadow: none;        /* Sicurezza extra */
+    color: var(--text-primary);
+    letter-spacing: -0.5px;
     margin: 0;
 }
 
+/* General classes for posts */
+.post-content h2 {
+    font-family: var(--font-sans);
+    font-size: 1.5rem;
+    color: var(--text-primary);
+    margin: 36px 0 16px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid var(--border-color);
+}
 
-/* --- FOOTER --- */
+.post-content h3 {
+    font-family: var(--font-sans);
+    font-size: 1.15rem;
+    color: var(--accent-color);
+    margin: 24px 0 12px;
+}
+
+.post-content p {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: var(--text-secondary);
+    margin-bottom: 20px;
+}
+
+.intro-box {
+    border-left: 4px solid var(--accent-color);
+    padding: 8px 0 8px 24px;
+    margin-bottom: 32px;
+    background-color: var(--accent-muted);
+    border-radius: 0 8px 8px 0;
+}
+
+.intro-box p {
+    font-size: 1.15rem !important;
+    color: var(--text-primary) !important;
+    margin-bottom: 0 !important;
+}
+
+/* --- 10. FOOTER --- */
 footer {
-    background-color: #1a1a1a; /* Quasi nero, molto elegante */
-    color: #aaaaaa;            /* Testo grigio chiaro (non bianco puro, per eleganza) */
-    padding: 60px 20px 20px;   /* Spazio abbondante sopra e sotto */
-    margin-top: 80px;          /* Stacca il footer dal contenuto principale */
-    border-top: 4px solid var(--accent-color); /* La linea verde che chiude */
-    font-size: 0.9rem;
+    background-color: var(--footer-bg);
+    color: var(--footer-text);
+    padding: 64px 24px 32px;
+    margin-top: 80px;
+    border-top: 1px solid var(--border-color);
+    transition: var(--transition-smooth);
 }
 
 .footer-content {
     max-width: var(--content-width);
     margin: 0 auto;
     display: flex;
-    justify-content: space-between; /* Spinge i contenuti ai lati opposti */
+    justify-content: space-between;
     align-items: flex-start;
-    flex-wrap: wrap; /* Su mobile va a capo */
+    flex-wrap: wrap;
     gap: 40px;
 }
 
-/* Colonna di sinistra (Nome e frase) */
 .footer-info h4 {
-    font-family: 'Roboto Mono', monospace;
-    color: #FFFFFF;
-    font-size: 1.2rem;
-    margin-bottom: 15px;
+    font-family: var(--font-mono);
+    color: var(--footer-title);
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 16px;
     text-transform: uppercase;
     letter-spacing: 1px;
 }
@@ -604,9 +824,9 @@ footer {
 .footer-info p {
     max-width: 400px;
     line-height: 1.6;
+    font-size: 0.95rem;
 }
 
-/* Colonna di destra (Link social) */
 .footer-links ul {
     list-style: none;
     display: flex;
@@ -614,301 +834,327 @@ footer {
 }
 
 .footer-links a {
-    color: #FFFFFF;
-    text-decoration: none;
-    font-weight: bold;
-    font-size: 1rem;
-    transition: color 0.3s;
+    color: var(--footer-text);
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: var(--transition-smooth);
 }
 
 .footer-links a:hover {
-    color: var(--accent-color); /* Diventa verde al passaggio */
-    text-decoration: none;
+    color: var(--accent-color);
 }
 
-/* Copyright in basso */
 .footer-bottom {
     text-align: center;
-    margin-top: 30px;
-    padding-top: 20px;
-    border-top: 1px solid #333; /* Linea sottile separatrice */
+    margin-top: 48px;
+    padding-top: 24px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
     font-size: 0.8rem;
-    font-family: 'Roboto Mono', monospace;
+    font-family: var(--font-mono);
+    color: var(--footer-text);
+    opacity: 0.7;
 }
 
-/* --- RESPONSIVE (Mobile & Tablet) --- */
+/* --- 11. KEYFRAME ANIMATIONS --- */
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* --- 12. RESPONSIVE DESIGN --- */
 @media (min-width: 1440px) {
     :root {
-        --content-width: 1280px;
-        --header-height-home: 65vh;
-        --header-height-page: 35vh;
-    }
-
-    body > main {
-        padding: 0 40px 80px;
-    }
-
-    .content-card, .profile-card {
-        padding: 60px 70px;
-    }
-
-    .profile-content h2 {
-        font-size: 3.2rem;
-    }
-
-    .profile-content p:first-of-type {
-        font-size: 1.4rem;
-    }
-
-    .profile-content p {
-        font-size: 1.2rem;
-    }
-
-    .blog-grid {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 35px;
-    }
-
-    header .logo img {
-        height: 110px;
-    }
-
-    header .logo span {
-        font-size: 1.3rem;
-    }
-
-    nav a {
-        font-size: 1.05rem;
-        padding: 13px 28px;
+        --content-width: 1200px;
     }
 }
 
 @media (max-width: 1024px) {
     :root {
-        --content-width: 92vw;
-        --header-height-home: 50vh;
-        --header-height-page: 28vh;
-    }
-
-    body > main {
-        margin: -40px auto 0;
-        padding: 0 16px 50px;
+        --content-width: 90vw;
     }
 }
 
 @media (max-width: 768px) {
-    body {
-        font-size: 15px;
-        line-height: 1.6;
+    :root {
+        --header-height-home: 45vh;
+        --header-height-page: 230px;
     }
-
-    header {
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-        gap: 12px;
-        padding: 16px 6% 18px;
-        text-align: left;
-        position: relative;
-    }
-
-    header .logo {
-        padding: 6px 10px;
-        gap: 8px;
-    }
-
-    header .logo img {
-        height: 52px;
-    }
-
-    header .logo span {
-        font-size: 0.9rem;
-    }
-
-    nav ul {
-        display: flex;
-        flex-direction: column;
-        align-items: stretch;
-        width: min(260px, 78vw);
-        gap: 18px;
-        position: absolute;
-        top: calc(100% + 4px);
-        right: 4%;
-        background-color: rgba(0, 0, 0, 0.75);
-        padding: 12px 6px 12px 12px;
-        border-radius: 10px;
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-        transform: translateX(120%) scale(0.98);
-        opacity: 0;
-        visibility: hidden;
-        pointer-events: none;
-        transition: transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.35s ease, visibility 0s linear 0.35s;
-        z-index: 20;
-    }
-
-    nav.is-open ul {
-        transform: translateX(0) scale(1);
-        opacity: 1;
-        visibility: visible;
-        pointer-events: auto;
-        transition: transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.35s ease;
-    }
-
-    nav {
-        width: auto;
-    }
-
-    .nav-toggle {
-        display: inline-flex;
-        margin-left: auto;
-    }
-
-    nav a {
-        padding: 8px 10px 8px 12px;
-        font-size: 0.85rem;
-        width: 100%;
-        text-align: right;
-    }
-
-    header.home-header {
-        height: auto;
-        padding-bottom: 30px;
-    }
-
+    
     header.page-header {
-        height: auto;
-        padding-bottom: 25px;
+        min-height: 230px;
+    }
+    
+    main {
+        margin: -40px auto 0;
+        padding: 0 16px 60px;
+    }
+    
+    .internal-page main {
+        margin: -35px auto 0;
+    }
+    
+    .hero-content h1 {
+        font-size: 2.5rem;
     }
 
+    .hero-content p {
+        font-size: 0.85rem;
+    }
+    
     .content-card, .profile-card {
-        padding: 28px;
+        padding: 32px 24px;
     }
 
     .profile-card {
         flex-direction: column;
-        align-items: center;
         text-align: center;
+        gap: 32px;
     }
-
-    .profile-content {
-        min-width: auto;
-        align-items: center;
-    }
-
-    .profile-content p {
-        max-width: 100%;
-    }
-
-    .profile-content p:first-of-type {
-        font-size: 1.1rem;
-    }
-
-    .profile-content p {
-        font-size: 1rem;
-    }
-
-    .profile-content h2 {
-        font-size: 2rem;
-    }
-
+    
     .profile-content p:first-of-type {
         border-left: none;
         padding-left: 0;
     }
-
-    .profile-pic {
-        width: 180px;
-        height: 180px;
+    
+    /* Responsive menu */
+    .nav-toggle {
+        display: flex;
     }
 
-    .cv-timeline {
-        padding-left: 25px;
+    nav {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: var(--bg-secondary);
+        border-bottom: 1px solid var(--border-color);
+        padding: 24px;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-10px);
+        transition: var(--transition-smooth);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
     }
 
-    .cv-timeline article::before {
-        left: -25px;
+    nav.is-open {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
     }
 
-    .cv-timeline h3 {
-        font-size: 1.25rem;
+    nav ul {
+        flex-direction: column;
+        align-items: stretch;
+        width: 100%;
+        gap: 12px;
     }
 
-    .cv-timeline p,
-    .cv-timeline li {
-        font-size: 1rem;
-    }
-
-    .blog-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .blog-card h3 {
-        font-size: 1.2rem;
-    }
-
-    .blog-card p {
+    nav a {
+        display: block;
+        text-align: center;
+        padding: 12px;
         font-size: 0.95rem;
     }
-
-    .footer-content {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
+    
+    .skills-grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
     }
-
-    .footer-links ul {
-        justify-content: center;
-        flex-wrap: wrap;
+    
+    .cv-timeline {
+        padding-left: 24px;
+    }
+    
+    .cv-timeline article::before {
+        left: -29px;
     }
 }
 
 @media (max-width: 480px) {
-    body {
-        font-size: 14px;
+    .hero-content h1 {
+        font-size: 2rem;
     }
-
-    body > main {
-        margin: -30px auto 0;
-        padding: 0 14px 40px;
+    
+    .profile-pic {
+        width: 160px;
+        height: 160px;
     }
-
-    header .logo img {
-        height: 60px;
+    
+    .university-logos {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 16px;
     }
-
-    nav a {
-        width: 100%;
-        text-align: center;
-    }
-
-    .profile-content h2 {
-        font-size: 1.8rem;
-    }
-
-    .profile-content p:first-of-type {
-        font-size: 1.05rem;
-    }
-
-    .profile-content p {
-        font-size: 0.95rem;
-    }
-
-    .blog-card {
-        padding: 22px;
-    }
-
-    .blog-card h3 {
-        font-size: 1.1rem;
-    }
-
-    .blog-card p {
-        font-size: 0.92rem;
-    }
-
+    
     .uni-logo {
-        height: 48px;
+        height: 38px;
     }
+}
+/* --- LANGUAGE SWITCH LINK --- */
+.lang-switch {
+    display: inline-flex;
+    align-items: center;
+    background: var(--btn-header-bg);
+    border: 1px solid var(--btn-header-border);
+    border-radius: 20px;
+    padding: 2px;
+    text-decoration: none; /* Rimuove la sottolineatura del link */
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 700;
+    position: relative;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    transition: var(--transition-smooth);
+    height: 38px;
+    width: 64px;
+}
+
+.lang-switch:hover {
+    border-color: var(--accent-color);
+}
+
+.lang-option {
+    flex: 1;
+    text-align: center;
+    color: var(--text-secondary);
+    z-index: 2;
+    padding-top: 2px;
+    transition: color 0.3s ease;
+}
+
+.lang-switch .lang-slider {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: calc(50% - 2px);
+    height: calc(100% - 4px);
+    background-color: var(--accent-color);
+    border-radius: 16px;
+    transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 1;
+}
+
+/* Stile quando si è sulla pagina INGLESE */
+.lang-switch.en-active .lang-slider {
+    transform: translateX(0);
+}
+.lang-switch.en-active .lang-en {
+    color: #ffffff;
+}
+
+/* Stile quando si è sulla pagina ITALIANA */
+.lang-switch.it-active .lang-slider {
+    transform: translateX(100%);
+}
+.lang-switch.it-active .lang-it {
+    color: #ffffff;
 }
 
 
+/* --- 14. CUSTOM POP-UP MODAL (BLOG) --- */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+    opacity: 0;
+    visibility: hidden;
+    transition: var(--transition-smooth);
+}
+
+.modal-overlay.is-active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-content {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+    padding: 40px;
+    max-width: 420px;
+    width: 90%;
+    text-align: center;
+    box-shadow: var(--card-shadow-hover);
+    transform: translateY(20px);
+    transition: var(--transition-smooth);
+}
+
+.modal-overlay.is-active .modal-content {
+    transform: translateY(0);
+}
+
+.modal-content h3 {
+    font-size: 1.5rem;
+    margin-bottom: 16px;
+}
+
+.modal-content p {
+    color: var(--text-secondary);
+    margin-bottom: 32px;
+    font-size: 1.05rem;
+    line-height: 1.6;
+}
+
+.modal-actions {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+}
+
+.modal-btn {
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    border: none;
+    font-family: var(--font-sans);
+    text-decoration: none;
+}
+
+.modal-btn-cancel {
+    background: var(--btn-header-bg);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+}
+
+.modal-btn-cancel:hover {
+    background: var(--border-color);
+}
+
+.modal-btn-confirm {
+    background: var(--accent-color);
+    color: #ffffff;
+}
+
+.modal-btn-confirm:hover {
+    background: var(--accent-hover);
+    color: #ffffff;
+}
