@@ -6,31 +6,60 @@
     <title>Riccardo Fin - Portfolio</title>
     
     <link rel="icon" type="image/jpeg" href="images/Icon.jpeg">
-
     <link rel="stylesheet" href="style.css">
-    </head>
+    
+    <!-- Theme check script to avoid flash of light mode -->
+    <script>
+        (function() {
+            const storedTheme = localStorage.getItem('theme');
+            const theme = storedTheme || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+            document.documentElement.setAttribute('data-theme', theme);
+        })();
+    </script>
+</head>
 <body>
 
-   <header class="home-header">
-    
-    <div class="logo">
-        <img src="images/Logo.png" alt="Riccardo Fin Logo">
-        <span>PORTFOLIO</span>
+    <!-- Sticky Navigation Bar -->
+    <div class="nav-bar">
+        <div class="nav-container">
+            <a href="index.html" class="logo-link">
+                <div class="logo">
+                    <img src="images/Logo.png" alt="Riccardo Fin Logo">
+                    <span>PORTFOLIO</span>
+                </div>
+            </a>
+            
+            <div class="nav-actions">
+                <!-- Language Switch Link (English Active -> punta all'italiano) -->
+                <a href="it/index.html" class="lang-switch en-active" aria-label="Passa all'italiano">
+                    <span class="lang-slider"></span>
+                    <span class="lang-option lang-en">EN</span>
+                    <span class="lang-option lang-it">IT</span>
+                </a>
+
+                <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+                    <!-- Sun/Moon icon injected by JS -->
+                </button>
+                <button class="nav-toggle" aria-expanded="false" aria-controls="site-nav" aria-label="Toggle navigation menu">
+                    <span class="bars"></span>
+                </button>
+                <nav id="site-nav">
+                    <ul>
+                        <li><a href="index.html" class="active">Home</a></li>
+                        <li><a href="cv.html">CV</a></li>
+                        <li><a href="blog.html">Blog posts</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
     </div>
-    
-    <button class="nav-toggle" aria-expanded="false" aria-controls="site-nav">
-        <span class="bars" aria-hidden="true"></span>
-        Menu
-    </button>
-    <nav id="site-nav">
-        <ul>
-            <li><a href="index.html" class="active">Home</a></li>
-            
-            <li><a href="cv.html">CV</a></li>
-            <li><a href="blog.html">Blog posts</a></li>
-            
-        </ul>
-    </nav>
+
+    <!-- Home Header Hero Banner -->
+    <header class="home-header">
+        <div class="hero-content">
+            <h1>Riccardo Fin</h1>
+            <p>Sustainable Finance & Economics</p>
+        </div>
     </header>
 
     <main>
@@ -42,23 +71,20 @@
                 <p>
                     Hello, I'm a business administration graduate, currently studying <strong>Sustainable Finance</strong> as a master's student in Ca' Foscari, Venice. 
                 </p>
-                <p>My academic focus is driven by a deep passion for the environment. I believe that 
-        <strong>innovation</strong> is the key to shifting our global economy towards a truly 
-        sustainable market model, bridging the gap between profitability and responsibility.  </p>
-        <p>On a less serious note, you can also find me appreciating 
-        classic cars, nerding on videogames/boardgames, or playing my guitar.</p>
+                <p>I chose this academic path because I am passionate about the dynamism and the forward-looking nature of finance. I firmly believe that sustainability will be an integral part of its future, driving an exciting wave of innovation across the markets.
+                </p>
+                <p>Outside of my academic life, you'll often find me nerding out over video games and board games, playing my guitar, or hiking in the mountains.</p>
                 <p>
-                    This portfolio is a collection of my professional journey, my academic research, 
-                    and my thoughts on the evolving world of finance.
+                    The goal of this website is to share my professional background, as well as my personal and university research.
                 </p>
                 
-                <br>
-                <a href="cv.html" style="color: var(--accent-color); font-weight: bold;">View my full CV →</a>
+                <a href="cv.html" class="cv-link">View my full CV</a>
+
+
             </div>
         </section>
     </main>
     
-
 <footer>
     <div class="footer-content">
         
